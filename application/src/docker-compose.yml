@@ -1,0 +1,21 @@
+services:
+
+  api:
+    build: .
+    container_name: aegisops_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./jobs.db:/app/jobs.db
+    environment:
+      - PYTHONPATH=/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+
+  worker:
+    build: .
+    container_name: aegisops_worker
+    volumes:
+      - ./jobs.db:/app/jobs.db
+    environment:
+      - PYTHONPATH=/app
+    command: python workers/job_worker.py

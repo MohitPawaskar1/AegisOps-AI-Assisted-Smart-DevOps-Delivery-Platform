@@ -35,3 +35,9 @@ def start_worker():
     worker_thread = threading.Thread(target=process_jobs)
     worker_thread.daemon = True
     worker_thread.start()
+
+
+    
+if __name__ == "__main__":
+    print("Worker container started")
+    process_jobs()

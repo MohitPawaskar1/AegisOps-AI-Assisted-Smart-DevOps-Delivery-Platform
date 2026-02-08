@@ -9,13 +9,6 @@ app = FastAPI()
 
 Base.metadata.create_all(bind=engine)
 
-@app.on_event("startup")
-def startup_event():
-    start_worker()
-    print("Worker started successfully")
-
-
-
 @app.get("/")
 def home():
     return {"message": "AegisOps Job Processor Running"}
